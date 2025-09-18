@@ -1,6 +1,16 @@
 package com.springBoot.Test.Entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "BookDetails")
 public class bookEntity {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int bookid;
 	private String bookname;
 	public int getBookid() {
