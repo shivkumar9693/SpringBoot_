@@ -1,9 +1,11 @@
 package com.springBoot.Test.Entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -13,6 +15,8 @@ public class bookEntity {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int bookid;
 	private String bookname;
+	@OneToOne(cascade = CascadeType.ALL)
+	private Author author;
 	public int getBookid() {
 		return bookid;
 	}
@@ -25,18 +29,27 @@ public class bookEntity {
 	public void setBookname(String bookname) {
 		this.bookname = bookname;
 	}
-	public bookEntity() {
-		 
+	public Author getAuthor() {
+		return author;
 	}
-	public bookEntity(int bookid, String bookname) {
+	public void setAuthor(Author author) {
+		this.author = author;
+	}
+	public bookEntity(int bookid, String bookname, Author author) {
 		super();
 		this.bookid = bookid;
 		this.bookname = bookname;
+		this.author = author;
 	}
 	@Override
 	public String toString() {
-		return "bookEntity [bookid=" + bookid + ", bookname=" + bookname + "]";
+		return "bookEntity [bookid=" + bookid + ", bookname=" + bookname + ", author=" + author + "]";
 	}
+	public bookEntity() {
+	 
+	}
+	 
+ 
 	
 	
 
