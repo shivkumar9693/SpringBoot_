@@ -1,5 +1,7 @@
 package com.springBoot.Test.Entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,6 +18,7 @@ public class bookEntity {
 	private int bookid;
 	private String bookname;
 	@OneToOne(cascade = CascadeType.ALL)
+	@JsonManagedReference
 	private Author author;
 	public int getBookid() {
 		return bookid;

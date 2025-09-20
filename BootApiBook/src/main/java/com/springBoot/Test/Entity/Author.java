@@ -1,9 +1,14 @@
 package com.springBoot.Test.Entity;
 
+import java.awt.print.Book;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -15,6 +20,15 @@ public class Author {
 	private String Firstname;
 	private String Lastname;
 	private String Language;
+	@OneToOne
+	@JsonBackReference
+	private Book book;
+	public Book getBook() {
+		return book;
+	}
+	public void setBook(Book book) {
+		this.book = book;
+	}
 	public int getAuthorid() {
 		return authorid;
 	}
@@ -39,17 +53,20 @@ public class Author {
 	public void setLanguage(String language) {
 		Language = language;
 	}
+	 
 	@Override
 	public String toString() {
 		return "Author [authorid=" + authorid + ", Firstname=" + Firstname + ", Lastname=" + Lastname + ", Language="
-				+ Language + "]";
+				+ Language + ", book=" + book + "]";
 	}
-	public Author(int authorid, String firstname, String lastname, String language) {
+	 
+	public Author(int authorid, String firstname, String lastname, String language, Book book) {
 		super();
 		this.authorid = authorid;
 		Firstname = firstname;
 		Lastname = lastname;
 		Language = language;
+		this.book = book;
 	}
 	public Author() {
 	 
