@@ -1,8 +1,10 @@
 package com.springBoot.Test.Entity;
+ 
 
-import java.awt.print.Book;
+ 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.springBoot.Test.Controller.Book;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,15 +22,9 @@ public class Author {
 	private String Firstname;
 	private String Lastname;
 	private String Language;
-	@OneToOne
+	@OneToOne(mappedBy = "author")
 	@JsonBackReference
-	private Book book;
-	public Book getBook() {
-		return book;
-	}
-	public void setBook(Book book) {
-		this.book = book;
-	}
+	private bookEntity bookEntity;
 	public int getAuthorid() {
 		return authorid;
 	}
@@ -53,23 +49,32 @@ public class Author {
 	public void setLanguage(String language) {
 		Language = language;
 	}
-	 
+	public bookEntity getBookEntity() {
+		return bookEntity;
+	}
+	public void setBookEntity(bookEntity bookEntity) {
+		this.bookEntity = bookEntity;
+	}
 	@Override
 	public String toString() {
 		return "Author [authorid=" + authorid + ", Firstname=" + Firstname + ", Lastname=" + Lastname + ", Language="
-				+ Language + ", book=" + book + "]";
+				+ Language + ", bookEntity=" + bookEntity + "]";
 	}
-	 
-	public Author(int authorid, String firstname, String lastname, String language, Book book) {
+	public Author(int authorid, String firstname, String lastname, String language,
+			com.springBoot.Test.Entity.bookEntity bookEntity) {
 		super();
 		this.authorid = authorid;
 		Firstname = firstname;
 		Lastname = lastname;
 		Language = language;
-		this.book = book;
+		this.bookEntity = bookEntity;
 	}
 	public Author() {
-	 
+		 
 	}
+	 
+	 
+	 
+	 
 	 
 }
