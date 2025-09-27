@@ -1,10 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+  <meta charset="UTF-8">
+  <title>Home</title>
+  <style>
+    .active-user {
+      color: green;
+      font-weight: bold;
+    }
+    .status-dot {
+      height: 10px;
+      width: 10px;
+      background-color: green;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 8px;
+    }
+  </style>
 </head>
 <body>
-
+  <h1>
+    <span class="status-dot"></span>
+    Logged in as 
+    <span class="active-user" th:text="${user.username}"></span>
+  </h1>
 </body>
 </html>

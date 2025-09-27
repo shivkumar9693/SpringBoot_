@@ -47,19 +47,33 @@
 
   <div class="signup-card">
     <h2>Sign Up</h2>
-    <form th:action="@{/home}" th:method="post" th:value="${user}" >
+    <form th:action="@{/home}" th:method="post" th:object="${user}" >
       <div class="form-group">
         <label for="username">Username</label>
         <input type="text" name="username" 
         th:value="${user.username}"
+        th:classappend="${#fields.hasErrors('username')}?'is-invalid':''"
+   
         class="form-control" id="username" placeholder="Enter username" required>
+    <!--     <p th:each="e : ${#fields.errors('username')}" th:text="${e}"></p> -->
+     
+    
+        <div  th:each="e : ${#fields.errors('username')}" th:text="${e}" id="validationServer03Feedback" class="invalid-feedback">
+      
+    </div>
+    
+    
+        
+        
       </div>
 
       <div class="form-group">
         <label for="password">Password</label>
         <input type="password" name="password"
         th:value="${user.password}"
+        th:classappend="${#fields.hasErrors('password')}?'is-invalid':' '"
          class="form-control" id="password" placeholder="Enter password" required>
+           <div  th:each="e : ${#fields.errors('password')}" th:text="${e}" id="validationServer03Feedback" class="invalid-feedback">
       </div>
 
       
