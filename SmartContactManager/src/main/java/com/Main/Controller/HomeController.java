@@ -2,6 +2,7 @@ package com.Main.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,6 +24,8 @@ import jakarta.validation.Valid;
  
 @Controller
 public class HomeController {
+	@Autowired
+	private BCryptPasswordEncoder encoder;
 	@Autowired
 	private UserRepo repo;
 	@GetMapping("/")
@@ -74,6 +77,7 @@ public class HomeController {
 	        user.setActive(true);
 	        user.setImgurl("default.png");
 	        user.setRole("UserRole");
+	        user.setPassword(encoder.encode(user.getPassword()));
 
 	        // Save user to DB
 	        User savedUser = repo.save(user);
