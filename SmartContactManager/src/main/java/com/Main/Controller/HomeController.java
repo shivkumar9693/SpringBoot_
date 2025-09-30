@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.Main.Entity.User;
 import com.Main.Repo.UserRepo;
+import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 
 import jakarta.validation.Valid;
 
@@ -76,7 +77,7 @@ public class HomeController {
 	        // Set default values
 	        user.setActive(true);
 	        user.setImgurl("default.png");
-	        user.setRole("UserRole");
+	        user.setRole("ROLE_USER");
 	        user.setPassword(encoder.encode(user.getPassword()));
 
 	        // Save user to DB
@@ -103,7 +104,17 @@ public class HomeController {
 	    // Redirect to signup to show flash message
 	    return "redirect:/signup";
 	}
-
+	@GetMapping("/signin")
+	public String login(Model model) {
+		 model.addAttribute("title", "Signin | Smart Contact Manager");
+		return "login";
+		
+	}
+	
+	@GetMapping("/error")
+	public String error(Model model) {
+		return"Error";
+	}
  
 	
 
