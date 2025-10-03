@@ -76,7 +76,7 @@ public class HomeController {
 	    try {
 	        // Set default values
 	        user.setActive(true);
-	        user.setImgurl("default.png");
+			/* user.setImgurl("default.jpeg"); */
 	        user.setRole("ROLE_USER");
 	        user.setPassword(encoder.encode(user.getPassword()));
 
@@ -102,7 +102,7 @@ public class HomeController {
 	    }
 
 	    // Redirect to signup to show flash message
-	    return "redirect:/signup";
+	    return "redirect:/signin";
 	}
 	@GetMapping("/signin")
 	public String login(Model model) {
